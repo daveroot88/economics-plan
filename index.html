@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Econ 110 Semester Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ground:#eef1f6;
+  --surface:#ffffff;
+  --surface-2:#f6f8fb;
+  --line:#dbe1ea;
+  --line-strong:#c3ccd9;
+  --ink:#1b1f28;
+  --muted:#5c6472;
+  --faint:#8b93a2;
+  --accent:#1f4e87;
+  --accent-soft:#e5edf7;
+  --deadline-h:34; --deadline-s:82%;
+  --exam-h:353; --exam-s:68%;
+  --good-h:150; --good-s:52%;
+  --shadow:0 1px 2px rgba(20,30,50,.06),0 6px 20px rgba(20,30,50,.05);
+  --shadow-sm:0 1px 2px rgba(20,30,50,.06);
+}
+:root:not([data-theme="light"]){
+  @media (prefers-color-scheme: dark){
+    --ground:#0f131a;
+    --surface:#161b24;
+    --surface-2:#1b212c;
+    --line:#28303d;
+    --line-strong:#38424f;
+    --ink:#e7ebf2;
+    --muted:#9aa4b4;
+    --faint:#6b7585;
+    --accent:#6ba3e6;
+    --accent-soft:#1a2739;
+    --deadline-s:70%;
+    --exam-s:60%;
+    --good-s:45%;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+    --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0f131a;
+  --surface:#161b24;
+  --surface-2:#1b212c;
+  --line:#28303d;
+  --line-strong:#38424f;
+  --ink:#e7ebf2;
+  --muted:#9aa4b4;
+  --faint:#6b7585;
+  --accent:#6ba3e6;
+  --accent-soft:#1a2739;
+  --deadline-s:70%;
+  --exam-s:60%;
+  --good-s:45%;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.35);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px;margin:0 auto;padding:clamp(16px,3vw,34px) clamp(12px,3vw,24px) 80px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ---------- header ---------- */
+header.top{margin-bottom:22px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 6px}
+h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(28px,5vw,42px);line-height:1.05;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:8px 0 0;font-size:15px;max-width:62ch}
+
+/* ---------- dashboard ---------- */
+.dash{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+.dash-main{display:grid;grid-template-columns:1.4fr 1fr;gap:0}
+@media(max-width:640px){.dash-main{grid-template-columns:1fr}}
+.progress-panel{padding:20px 22px;border-right:1px solid var(--line)}
+@media(max-width:640px){.progress-panel{border-right:none;border-bottom:1px solid var(--line)}}
+.pct{display:flex;align-items:baseline;gap:10px}
+.pct b{font-family:"Fraunces",serif;font-size:40px;font-weight:600;line-height:1}
+.pct span{color:var(--muted);font-size:13px}
+.bar{height:9px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);margin-top:12px;overflow:hidden}
+.bar>i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--accent),hsl(var(--good-h) var(--good-s) 45%));transition:width .5s ease}
+.mini-units{display:flex;gap:14px;margin-top:14px;flex-wrap:wrap}
+.mini-units div{font-size:12px;color:var(--muted)}
+.mini-units b{color:var(--ink);font-weight:600}
+.nextup{padding:20px 22px;display:flex;flex-direction:column;gap:10px;justify-content:center}
+.nextup .lab{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint)}
+.nextup .big{font-size:15px;font-weight:600;line-height:1.35}
+.nextup .when{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--accent)}
+.nextup .days-left{color:var(--muted);font-size:13px}
+
+.exam-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+@media(max-width:640px){.exam-strip{grid-template-columns:1fr}}
+.exam-strip .ex{padding:12px 18px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.exam-strip .ex:last-child{border-right:none}
+@media(max-width:640px){.exam-strip .ex{border-right:none;border-bottom:1px solid var(--line)}.exam-strip .ex:last-child{border-bottom:none}}
+.exam-strip .nm{font-weight:600;font-size:13.5px;display:flex;align-items:center;gap:8px}
+.exam-strip .wt{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#fff;background:hsl(var(--exam-h) var(--exam-s) 46%);padding:1px 7px;border-radius:99px;font-weight:600}
+.exam-strip .dt{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted)}
+
+/* ---------- controls ---------- */
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:20px 0 6px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:3px;box-shadow:var(--shadow-sm)}
+.seg button{font:inherit;font-size:13px;font-weight:500;border:0;background:transparent;color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.btn{font:inherit;font-size:13px;font-weight:500;border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:7px 13px;border-radius:9px;cursor:pointer;box-shadow:var(--shadow-sm)}
+.btn:hover{border-color:var(--line-strong);color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.spacer{flex:1}
+.controls .btn.warn[data-armed="1"]{background:hsl(var(--exam-h) var(--exam-s) 46%);border-color:hsl(var(--exam-h) var(--exam-s) 46%);color:#fff}
+
+/* ---------- legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:6px 10px;margin:10px 0 24px;font-size:12px;color:var(--muted)}
+.legend .tag{cursor:default}
+
+/* ---------- units & weeks ---------- */
+.unit{margin-top:30px}
+.unit-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-bottom:10px;border-bottom:2px solid var(--line-strong);margin-bottom:16px}
+.unit-head .u-n{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:#fff;background:var(--accent);padding:3px 9px;border-radius:7px;letter-spacing:.04em}
+.unit-head h2{font-family:"Fraunces",serif;font-weight:600;font-size:20px;margin:0}
+.unit-head .goal{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--muted);margin-left:auto}
+
+.week{background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);margin-bottom:14px;overflow:hidden}
+.week-head{display:flex;align-items:center;gap:10px;padding:11px 16px;background:var(--surface-2);border-bottom:1px solid var(--line);font-size:13px}
+.week-head .rng{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.week-head .wbadge{margin-left:auto;font-size:11px;font-family:"IBM Plex Mono",monospace;font-weight:600;padding:2px 8px;border-radius:99px}
+.week-head .wbadge.dl{background:hsl(var(--deadline-h) var(--deadline-s) 90%);color:hsl(var(--deadline-h) 90% 28%)}
+.week-head .wbadge.ex{background:hsl(var(--exam-h) var(--exam-s) 92%);color:hsl(var(--exam-h) 75% 38%)}
+:root[data-theme="dark"] .week-head .wbadge.dl{background:hsl(var(--deadline-h) 40% 22%);color:hsl(var(--deadline-h) var(--deadline-s) 72%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .week-head .wbadge.dl{background:hsl(var(--deadline-h) 40% 22%);color:hsl(var(--deadline-h) var(--deadline-s) 72%)}}
+:root[data-theme="dark"] .week-head .wbadge.ex{background:hsl(var(--exam-h) 40% 24%);color:hsl(var(--exam-h) var(--exam-s) 76%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .week-head .wbadge.ex{background:hsl(var(--exam-h) 40% 24%);color:hsl(var(--exam-h) var(--exam-s) 76%)}}
+
+/* ---------- day rows ---------- */
+.day{display:grid;grid-template-columns:104px 1fr;gap:2px;border-top:1px solid var(--line)}
+.week .day:first-child{border-top:none}
+.day .date{padding:12px 12px 12px 16px;display:flex;flex-direction:column;gap:1px;border-right:1px solid var(--line)}
+.day .date .wd{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:600}
+.day .date .dn{font-family:"Fraunces",serif;font-size:19px;font-weight:600;line-height:1.1}
+.day .date .mo{font-size:11px;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+.day .tasks{padding:8px 14px 10px}
+.task{display:flex;align-items:flex-start;gap:9px;padding:5px 0}
+.task+.task{border-top:1px dashed var(--line)}
+.task label{display:flex;align-items:flex-start;gap:9px;cursor:pointer;flex:1;min-width:0}
+.task input{appearance:none;-webkit-appearance:none;margin:2px 0 0;flex:none;width:17px;height:17px;border:1.6px solid var(--line-strong);border-radius:5px;background:var(--surface);cursor:pointer;position:relative;transition:.12s}
+.task input:hover{border-color:var(--accent)}
+.task input:checked{background:var(--accent);border-color:var(--accent)}
+.task input:checked::after{content:"";position:absolute;left:5px;top:1.5px;width:4px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.task input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.task .txt{font-size:14px;line-height:1.4}
+.task.done .txt{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--line-strong)}
+.tag{flex:none;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:6px;margin-top:1px;
+  background:hsl(var(--h) var(--s,40%) 92%);color:hsl(var(--h) calc(var(--s,40%) + 18%) 30%);white-space:nowrap}
+:root[data-theme="dark"] .tag{background:hsl(var(--h) calc(var(--s,40%) - 6%) 20%);color:hsl(var(--h) var(--s,40%) 78%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag{background:hsl(var(--h) calc(var(--s,40%) - 6%) 20%);color:hsl(var(--h) var(--s,40%) 78%)}}
+.tag.read{--h:184;--s:44%}
+.tag.quiz{--h:264;--s:42%}
+.tag.write{--h:214;--s:46%}
+.tag.podcast{--h:150;--s:46%}
+.tag.lecture{--h:229;--s:44%}
+.tag.review{--h:32;--s:52%}
+.tag.buffer{--h:220;--s:10%}
+.tag.deadline{--h:var(--deadline-h);--s:70%;background:hsl(var(--deadline-h) 88% 90%);color:hsl(var(--deadline-h) 92% 26%)}
+.tag.exam{--h:var(--exam-h);--s:64%;background:hsl(var(--exam-h) 78% 92%);color:hsl(var(--exam-h) 72% 38%)}
+.tag.off{--h:220;--s:8%}
+:root[data-theme="dark"] .tag.deadline{background:hsl(var(--deadline-h) 42% 22%);color:hsl(var(--deadline-h) var(--deadline-s) 70%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.deadline{background:hsl(var(--deadline-h) 42% 22%);color:hsl(var(--deadline-h) var(--deadline-s) 70%)}}
+:root[data-theme="dark"] .tag.exam{background:hsl(var(--exam-h) 42% 24%);color:hsl(var(--exam-h) var(--exam-s) 76%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag.exam{background:hsl(var(--exam-h) 42% 24%);color:hsl(var(--exam-h) var(--exam-s) 76%)}}
+
+/* accented day rows */
+.day.d-deadline{background:hsl(var(--deadline-h) 80% 97%)}
+.day.d-deadline .date{border-left:3px solid hsl(var(--deadline-h) var(--deadline-s) 50%);padding-left:13px}
+.day.d-exam{background:hsl(var(--exam-h) 70% 98%)}
+.day.d-exam .date{border-left:3px solid hsl(var(--exam-h) var(--exam-s) 50%);padding-left:13px}
+:root[data-theme="dark"] .day.d-deadline{background:hsl(var(--deadline-h) 30% 14%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .day.d-deadline{background:hsl(var(--deadline-h) 30% 14%)}}
+:root[data-theme="dark"] .day.d-exam{background:hsl(var(--exam-h) 28% 15%)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .day.d-exam{background:hsl(var(--exam-h) 28% 15%)}}
+.day.d-off{opacity:.62}
+.day.d-off .tasks{padding-top:10px;padding-bottom:10px}
+.day.d-off .task .txt{font-style:italic;color:var(--muted)}
+
+/* today */
+.day.today{box-shadow:inset 0 0 0 2px var(--accent)}
+.day.today .date .wd{color:var(--accent)}
+.badge-today{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9px;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--accent);padding:1px 6px;border-radius:5px;margin-top:4px;width:fit-content}
+
+/* rules panel */
+details.rules{margin:26px 0 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-sm);overflow:hidden}
+details.rules>summary{cursor:pointer;padding:14px 18px;font-weight:600;font-size:15px;list-style:none;display:flex;align-items:center;gap:8px}
+details.rules>summary::-webkit-details-marker{display:none}
+details.rules>summary::before{content:"›";font-size:20px;color:var(--accent);transition:.2s;line-height:1}
+details.rules[open]>summary::before{transform:rotate(90deg)}
+.rules-body{padding:2px 20px 18px;border-top:1px solid var(--line)}
+.rules-body h3{font-family:"Fraunces",serif;font-size:15px;margin:16px 0 6px}
+.rules-body p{font-size:13.5px;color:var(--muted);margin:5px 0}
+.rules-body .grade{display:grid;grid-template-columns:1fr auto;gap:3px 16px;max-width:340px;font-size:13.5px;margin:8px 0}
+.rules-body .grade .g-w{font-family:"IBM Plex Mono",monospace;font-weight:600;color:var(--ink);text-align:right}
+.rules-body .grade .g-l{color:var(--muted)}
+footer{margin-top:28px;font-size:12px;color:var(--faint);text-align:center;line-height:1.6}
+
+.empty{padding:40px;text-align:center;color:var(--muted);font-size:14px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <p class="eyebrow">BYU · Fall 2026 · Principles of Microeconomics</p>
+    <h1>Econ 110 Semester Plan</h1>
+    <p class="sub">Every day from today through the cumulative final, with reading, MindTap quizzes, writing assignments, and exam prep broken into daily chunks. Check things off as you go — your progress saves automatically in this browser. Sundays are kept free.</p>
+
+    <div class="dash">
+      <div class="dash-main">
+        <div class="progress-panel">
+          <div class="pct"><b id="pctNum">0%</b><span id="pctSub">0 of 0 tasks done</span></div>
+          <div class="bar"><i id="barFill"></i></div>
+          <div class="mini-units" id="miniUnits"></div>
+        </div>
+        <div class="nextup" id="nextUp"></div>
+      </div>
+      <div class="exam-strip">
+        <div class="ex"><div class="nm">Exam 1 <span class="wt">20%</span></div><div class="dt">Oct 22–23 · Testing Center</div></div>
+        <div class="ex"><div class="nm">Exam 2 <span class="wt">20%</span></div><div class="dt">Nov 19–24 · Testing Center</div></div>
+        <div class="ex"><div class="nm">Final <span class="wt">40%</span></div><div class="dt">Dec 12–17 · Cumulative</div></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Filter">
+        <button data-filter="all" aria-pressed="true">All days</button>
+        <button data-filter="todo" aria-pressed="false">To-do only</button>
+        <button data-filter="key" aria-pressed="false">Deadlines &amp; exams</button>
+      </div>
+      <button class="btn primary" id="jumpToday">Jump to today</button>
+      <div class="spacer"></div>
+      <button class="btn warn" id="resetBtn">Reset progress</button>
+    </div>
+
+    <div class="legend" id="legend"></div>
+  </header>
+
+  <main id="content"></main>
+
+  <details class="rules">
+    <summary>Key rules &amp; grading</summary>
+    <div class="rules-body">
+      <h3>How your grade breaks down</h3>
+      <div class="grade">
+        <div class="g-l">Exams 1 &amp; 2 (20% each)</div><div class="g-w">40%</div>
+        <div class="g-l">Cumulative Final</div><div class="g-w">40%</div>
+        <div class="g-l">Online Quizzes</div><div class="g-w">15%</div>
+        <div class="g-l">Writing Assignments</div><div class="g-w">5%</div>
+      </div>
+      <h3>Online quizzes</h3>
+      <p>Due Tuesday nights by 9:00pm Mountain Time. Retake as many times as you want before the deadline — only the highest score counts, and each attempt draws new questions. You may consult notes and the textbook. Your lowest six quiz scores are dropped.</p>
+      <h3>Writing assignments</h3>
+      <p>Eight total; your lowest two are dropped. Each is a 2-page (double-spaced, 12pt) analysis of an economics podcast. The first line = podcast title and source only. No quotations. Submit via Learning Suite by the 9:00pm deadline — late or emailed assignments are not accepted, and everything runs through Turnitin.</p>
+      <h3>Exams</h3>
+      <p>All taken in the Testing Center: closed-book, closed-note, multiple choice. Go within the listed window — pick one day. No make-up or early exams. One midterm can be dropped with its weight moved to the final. Notify the instructor in the first week of any exam-date conflicts.</p>
+      <p style="margin-top:12px;font-size:12.5px;color:var(--faint)">Exam windows were "pending Testing Center approval" on the syllabus — confirm the exact dates on Learning Suite. Chapter titles shown are the standard Mankiw numbering.</p>
+    </div>
+  </details>
+
+  <footer>
+    Built from your Econ 110 syllabus · schedule is "subject to change, exam dates are fixed" — always double-check Learning Suite.<br>Progress is saved only in this browser on this device.
+  </footer>
+</div>
+
+<script>
+const DATA={"days":[{"date":"2026-09-03","wd":"Thu","label":"Thursday, September 3","tasks":[{"t":"read","x":"Read Ch 2 \u2013 Thinking Like an Economist"},{"t":"quiz","x":"MindTap online quiz: Ch 2"},{"t":"podcast","x":"Subscribe to an econ podcast (Planet Money, The Indicator, Freakonomics Radio, EconTalk\u2026) for Writing Assignment #1"}]},{"date":"2026-09-04","wd":"Fri","label":"Friday, September 4","tasks":[{"t":"read","x":"Read Ch 3 \u2013 Interdependence & Gains from Trade"},{"t":"quiz","x":"MindTap online quiz: Ch 3"}]},{"date":"2026-09-05","wd":"Sat","label":"Saturday, September 5","tasks":[{"t":"podcast","x":"Listen to 1 podcast episode for Writing #1; note the economic principle it illustrates"}]},{"date":"2026-09-06","wd":"Sun","label":"Sunday, September 6","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-09-07","wd":"Mon","label":"Monday, September 7","tasks":[{"t":"read","x":"Read Ch 4 \u2013 Market Forces of Supply & Demand"},{"t":"quiz","x":"MindTap online quiz: Ch 4"}]},{"date":"2026-09-08","wd":"Tue","label":"Tuesday, September 8","tasks":[{"t":"write","x":"Draft Writing #1 (2 pages, double-spaced, 12pt; first line = podcast title & source; NO quotations)"}]},{"date":"2026-09-09","wd":"Wed","label":"Wednesday, September 9","tasks":[{"t":"lecture","x":"CLASS 3:00pm-ish \u2013 lecture on Ch 4-5"},{"t":"read","x":"Read Ch 5 \u2013 Elasticity & Its Application"},{"t":"quiz","x":"MindTap online quiz: Ch 5"}]},{"date":"2026-09-10","wd":"Thu","label":"Thursday, September 10","tasks":[{"t":"write","x":"Revise & polish Writing #1 (apply class principles to the podcast)"}]},{"date":"2026-09-11","wd":"Fri","label":"Friday, September 11","tasks":[{"t":"quiz","x":"Retake any low quizzes Ch 2-5 to raise scores (highest attempt counts); review feedback"}]},{"date":"2026-09-12","wd":"Sat","label":"Saturday, September 12","tasks":[{"t":"buffer","x":"Catch-up buffer: finish any unread Ch 2-5 / unfinished quizzes"}]},{"date":"2026-09-13","wd":"Sun","label":"Sunday, September 13","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-09-14","wd":"Mon","label":"Monday, September 14","tasks":[{"t":"review","x":"Final check: Writing #1 ready + all Ch 2-5 quizzes done"}]},{"date":"2026-09-15","wd":"Tue","label":"Tuesday, September 15","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #1 + Online Quizzes Ch 2-5 (submit via Learning Suite)"}]},{"date":"2026-09-16","wd":"Wed","label":"Wednesday, September 16","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 6-8"},{"t":"read","x":"Read Ch 6 \u2013 Supply, Demand & Government Policies"},{"t":"quiz","x":"MindTap online quiz: Ch 6"}]},{"date":"2026-09-17","wd":"Thu","label":"Thursday, September 17","tasks":[{"t":"read","x":"Read Ch 7 \u2013 Consumers, Producers & Efficiency of Markets"},{"t":"quiz","x":"MindTap online quiz: Ch 7"}]},{"date":"2026-09-18","wd":"Fri","label":"Friday, September 18","tasks":[{"t":"read","x":"Read Ch 8 \u2013 Application: Costs of Taxation (get ahead; quiz due next week)"},{"t":"quiz","x":"MindTap online quiz: Ch 8"}]},{"date":"2026-09-19","wd":"Sat","label":"Saturday, September 19","tasks":[{"t":"quiz","x":"Retake/improve quizzes Ch 6-7; review feedback"}]},{"date":"2026-09-20","wd":"Sun","label":"Sunday, September 20","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-09-21","wd":"Mon","label":"Monday, September 21","tasks":[{"t":"review","x":"Final check: Ch 6-7 quizzes done"}]},{"date":"2026-09-22","wd":"Tue","label":"Tuesday, September 22","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Online Quizzes Ch 6-7"}]},{"date":"2026-09-23","wd":"Wed","label":"Wednesday, September 23","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 9-11"},{"t":"read","x":"Read Ch 9 \u2013 Application: International Trade"},{"t":"quiz","x":"MindTap online quiz: Ch 9"}]},{"date":"2026-09-24","wd":"Thu","label":"Thursday, September 24","tasks":[{"t":"read","x":"Read Ch 10 \u2013 Externalities"},{"t":"quiz","x":"MindTap online quiz: Ch 10"},{"t":"podcast","x":"Pick & listen to a podcast episode for Writing #2"}]},{"date":"2026-09-25","wd":"Fri","label":"Friday, September 25","tasks":[{"t":"read","x":"Read Ch 11 \u2013 Public Goods & Common Resources"},{"t":"quiz","x":"MindTap online quiz: Ch 11"}]},{"date":"2026-09-26","wd":"Sat","label":"Saturday, September 26","tasks":[{"t":"write","x":"Draft Writing #2"}]},{"date":"2026-09-27","wd":"Sun","label":"Sunday, September 27","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-09-28","wd":"Mon","label":"Monday, September 28","tasks":[{"t":"write","x":"Revise Writing #2; retake quizzes Ch 8-11 to improve"}]},{"date":"2026-09-29","wd":"Tue","label":"Tuesday, September 29","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #2 + Online Quizzes Ch 8-11"}]},{"date":"2026-09-30","wd":"Wed","label":"Wednesday, September 30","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 14-15"},{"t":"read","x":"Read Ch 14 \u2013 Firms in Competitive Markets"},{"t":"quiz","x":"MindTap online quiz: Ch 14"}]},{"date":"2026-10-01","wd":"Thu","label":"Thursday, October 1","tasks":[{"t":"read","x":"Read Ch 15 \u2013 Monopoly"},{"t":"quiz","x":"MindTap online quiz: Ch 15"}]},{"date":"2026-10-02","wd":"Fri","label":"Friday, October 2","tasks":[{"t":"quiz","x":"Retake/improve quizzes Ch 14-15"}]},{"date":"2026-10-03","wd":"Sat","label":"Saturday, October 3","tasks":[{"t":"review","x":"Start light Exam 1 review: re-skim Ch 2-5 notes (Exam 1 is Oct 22-23)"}]},{"date":"2026-10-04","wd":"Sun","label":"Sunday, October 4","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-10-05","wd":"Mon","label":"Monday, October 5","tasks":[{"t":"review","x":"Final check: Ch 14-15 quizzes done"}]},{"date":"2026-10-06","wd":"Tue","label":"Tuesday, October 6","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Online Quizzes Ch 14-15"}]},{"date":"2026-10-07","wd":"Wed","label":"Wednesday, October 7","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 16-17"},{"t":"read","x":"Read Ch 16 \u2013 Monopolistic Competition"},{"t":"quiz","x":"MindTap online quiz: Ch 16"}]},{"date":"2026-10-08","wd":"Thu","label":"Thursday, October 8","tasks":[{"t":"read","x":"Read Ch 17 \u2013 Oligopoly (quiz due next week)"},{"t":"quiz","x":"MindTap online quiz: Ch 17"},{"t":"podcast","x":"Pick & listen to a podcast episode for Writing #3"}]},{"date":"2026-10-09","wd":"Fri","label":"Friday, October 9","tasks":[{"t":"write","x":"Draft Writing #3"}]},{"date":"2026-10-10","wd":"Sat","label":"Saturday, October 10","tasks":[{"t":"write","x":"Revise Writing #3"},{"t":"review","x":"Exam 1 review: Ch 6-9 (govt policies, efficiency, taxes, trade)"}]},{"date":"2026-10-11","wd":"Sun","label":"Sunday, October 11","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-10-12","wd":"Mon","label":"Monday, October 12","tasks":[{"t":"review","x":"Final check: Writing #3 ready + Ch 16 quiz done"}]},{"date":"2026-10-13","wd":"Tue","label":"Tuesday, October 13","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #3 + Online Quiz Ch 16"}]},{"date":"2026-10-14","wd":"Wed","label":"Wednesday, October 14","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 18, 23"},{"t":"read","x":"Read Ch 18 \u2013 Markets for the Factors of Production"},{"t":"quiz","x":"MindTap online quiz: Ch 18"}]},{"date":"2026-10-15","wd":"Thu","label":"Thursday, October 15","tasks":[{"t":"read","x":"Read Ch 23 \u2013 Measuring a Nation's Income"},{"t":"quiz","x":"MindTap online quiz: Ch 23"},{"t":"podcast","x":"Pick & listen to a podcast episode for Writing #4"}]},{"date":"2026-10-16","wd":"Fri","label":"Friday, October 16","tasks":[{"t":"write","x":"Draft Writing #4; retake Ch 17 quiz"},{"t":"review","x":"EXAM 1 prep: Ch 10-11, 14 (externalities, public goods, competitive firms)"}]},{"date":"2026-10-17","wd":"Sat","label":"Saturday, October 17","tasks":[{"t":"review","x":"EXAM 1 prep: Ch 2-5 (econ thinking, trade, supply/demand, elasticity)"}]},{"date":"2026-10-18","wd":"Sun","label":"Sunday, October 18","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-10-19","wd":"Mon","label":"Monday, October 19","tasks":[{"t":"review","x":"EXAM 1 REVIEW SESSION 5-7pm (room TBD) \u2013 attend"},{"t":"write","x":"Finalize Writing #4; review Ch 6-9, 15-16"}]},{"date":"2026-10-20","wd":"Tue","label":"Tuesday, October 20","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #4 + Online Quizzes Ch 17, 18, 23"},{"t":"review","x":"Final Exam 1 cram: Ch 2-11, 14-16 (all exam material)"}]},{"date":"2026-10-21","wd":"Wed","label":"Wednesday, October 21","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 22"},{"t":"review","x":"Last-minute Exam 1 review; make sure you can get to the Testing Center"}]},{"date":"2026-10-22","wd":"Thu","label":"Thursday, October 22","tasks":[{"t":"exam","x":"EXAM 1 \u2013 Testing Center (Ch 2-11, 14-16). Go today to be safe (window Thu-Fri). 20% of grade"}]},{"date":"2026-10-23","wd":"Fri","label":"Friday, October 23","tasks":[{"t":"exam","x":"EXAM 1 window CLOSES today \u2013 take it now if you haven't"}]},{"date":"2026-10-24","wd":"Sat","label":"Saturday, October 24","tasks":[{"t":"buffer","x":"Light day \u2013 breather after Exam 1"}]},{"date":"2026-10-25","wd":"Sun","label":"Sunday, October 25","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-10-26","wd":"Mon","label":"Monday, October 26","tasks":[{"t":"read","x":"Read Ch 22 \u2013 Frontiers of Microeconomics (for Exam 2)"},{"t":"quiz","x":"MindTap online quiz: Ch 22"},{"t":"podcast","x":"Pick & listen to a podcast episode for Writing #5"}]},{"date":"2026-10-27","wd":"Tue","label":"Tuesday, October 27","tasks":[{"t":"read","x":"Read Ch 24 \u2013 Measuring the Cost of Living"},{"t":"quiz","x":"MindTap online quiz: Ch 24"}]},{"date":"2026-10-28","wd":"Wed","label":"Wednesday, October 28","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 24-25, 29"},{"t":"read","x":"Read Ch 25 \u2013 Production & Growth"},{"t":"quiz","x":"MindTap online quiz: Ch 25"}]},{"date":"2026-10-29","wd":"Thu","label":"Thursday, October 29","tasks":[{"t":"write","x":"Draft Writing #5"}]},{"date":"2026-10-30","wd":"Fri","label":"Friday, October 30","tasks":[{"t":"write","x":"Revise Writing #5"},{"t":"read","x":"Read Ch 29 \u2013 The Monetary System (get ahead; quiz due next week)"},{"t":"quiz","x":"MindTap online quiz: Ch 29"}]},{"date":"2026-10-31","wd":"Sat","label":"Saturday, October 31","tasks":[{"t":"quiz","x":"Retake/improve quizzes Ch 24-25"}]},{"date":"2026-11-01","wd":"Sun","label":"Sunday, November 1","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-11-02","wd":"Mon","label":"Monday, November 2","tasks":[{"t":"review","x":"Final check: Writing #5 ready + Ch 24-25 quizzes done"}]},{"date":"2026-11-03","wd":"Tue","label":"Tuesday, November 3","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #5 + Online Quizzes Ch 24-25"}]},{"date":"2026-11-04","wd":"Wed","label":"Wednesday, November 4","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 29, 30"},{"t":"read","x":"Read Ch 30 \u2013 Money Growth & Inflation"},{"t":"quiz","x":"MindTap online quiz: Ch 30"}]},{"date":"2026-11-05","wd":"Thu","label":"Thursday, November 5","tasks":[{"t":"podcast","x":"Pick & listen to a podcast episode for Writing #6; start draft"}]},{"date":"2026-11-06","wd":"Fri","label":"Friday, November 6","tasks":[{"t":"write","x":"Revise Writing #6"}]},{"date":"2026-11-07","wd":"Sat","label":"Saturday, November 7","tasks":[{"t":"quiz","x":"Retake/improve quizzes Ch 29-30"}]},{"date":"2026-11-08","wd":"Sun","label":"Sunday, November 8","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-11-09","wd":"Mon","label":"Monday, November 9","tasks":[{"t":"review","x":"Final check: Writing #6 ready + Ch 29-30 quizzes done"}]},{"date":"2026-11-10","wd":"Tue","label":"Tuesday, November 10","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #6 + Online Quizzes Ch 29, 30"}]},{"date":"2026-11-11","wd":"Wed","label":"Wednesday, November 11","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 31, 26"},{"t":"read","x":"Read Ch 31 \u2013 Open-Economy Macro: Basic Concepts"},{"t":"quiz","x":"MindTap online quiz: Ch 31"}]},{"date":"2026-11-12","wd":"Thu","label":"Thursday, November 12","tasks":[{"t":"read","x":"Read Ch 26 \u2013 Saving, Investment & the Financial System"},{"t":"quiz","x":"MindTap online quiz: Ch 26"},{"t":"podcast","x":"Pick & listen to a podcast episode for Writing #7"}]},{"date":"2026-11-13","wd":"Fri","label":"Friday, November 13","tasks":[{"t":"write","x":"Draft Writing #7"},{"t":"review","x":"EXAM 2 prep: Ch 17-18, 22-23"}]},{"date":"2026-11-14","wd":"Sat","label":"Saturday, November 14","tasks":[{"t":"write","x":"Revise Writing #7"},{"t":"review","x":"EXAM 2 prep: Ch 24-25, 29-30"}]},{"date":"2026-11-15","wd":"Sun","label":"Sunday, November 15","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-11-16","wd":"Mon","label":"Monday, November 16","tasks":[{"t":"review","x":"EXAM 2 REVIEW SESSION 5-7pm (room TBD) \u2013 attend"},{"t":"review","x":"Finalize Writing #7 + Ch 31, 26 quizzes"}]},{"date":"2026-11-17","wd":"Tue","label":"Tuesday, November 17","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #7 + Online Quizzes Ch 31, 26"},{"t":"review","x":"Exam 2 review continues (Ch 17-18, 22-25, 29-30)"}]},{"date":"2026-11-18","wd":"Wed","label":"Wednesday, November 18","tasks":[{"t":"lecture","x":"CLASS \u2013 Review & catch up"},{"t":"review","x":"EXAM 2 prep: full review of Ch 17-18, 22-23"}]},{"date":"2026-11-19","wd":"Thu","label":"Thursday, November 19","tasks":[{"t":"review","x":"EXAM 2 prep: Ch 24-25 (window opens today)"}]},{"date":"2026-11-20","wd":"Fri","label":"Friday, November 20","tasks":[{"t":"review","x":"EXAM 2 prep: Ch 29-30"},{"t":"exam","x":"EXAM 2 \u2013 Testing Center (Ch 17-18, 22-25, 29-30). Aim to take today/tomorrow. 20% of grade"}]},{"date":"2026-11-21","wd":"Sat","label":"Saturday, November 21","tasks":[{"t":"exam","x":"Take Exam 2 today if not done"}]},{"date":"2026-11-22","wd":"Sun","label":"Sunday, November 22","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-11-23","wd":"Mon","label":"Monday, November 23","tasks":[{"t":"exam","x":"Take Exam 2 today if not done (window closes tomorrow)"}]},{"date":"2026-11-24","wd":"Tue","label":"Tuesday, November 24","tasks":[{"t":"exam","x":"EXAM 2 window CLOSES today \u2013 take it now if you haven't"}]},{"date":"2026-11-25","wd":"Wed","label":"Wednesday, November 25","tasks":[{"t":"off","x":"NO CLASS \u2013 Thanksgiving. Rest."}]},{"date":"2026-11-26","wd":"Thu","label":"Thursday, November 26","tasks":[{"t":"off","x":"Thanksgiving Day \u2013 off"}]},{"date":"2026-11-27","wd":"Fri","label":"Friday, November 27","tasks":[{"t":"off","x":"Thanksgiving break \u2013 off"}]},{"date":"2026-11-28","wd":"Sat","label":"Saturday, November 28","tasks":[{"t":"off","x":"Thanksgiving break \u2013 off"}]},{"date":"2026-11-29","wd":"Sun","label":"Sunday, November 29","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-11-30","wd":"Mon","label":"Monday, November 30","tasks":[{"t":"read","x":"Read Ch 34 \u2013 Monetary & Fiscal Policy on Aggregate Demand"},{"t":"quiz","x":"MindTap online quiz: Ch 34"},{"t":"podcast","x":"Pick & listen to a podcast episode for Writing #8"}]},{"date":"2026-12-01","wd":"Tue","label":"Tuesday, December 1","tasks":[{"t":"read","x":"Read Ch 35 \u2013 Short-Run Tradeoff: Inflation & Unemployment"},{"t":"quiz","x":"MindTap online quiz: Ch 35"}]},{"date":"2026-12-02","wd":"Wed","label":"Wednesday, December 2","tasks":[{"t":"lecture","x":"CLASS \u2013 lecture on Ch 34, 35"},{"t":"write","x":"Draft Writing #8"}]},{"date":"2026-12-03","wd":"Thu","label":"Thursday, December 3","tasks":[{"t":"write","x":"Revise Writing #8"}]},{"date":"2026-12-04","wd":"Fri","label":"Friday, December 4","tasks":[{"t":"quiz","x":"Retake/improve quizzes Ch 34-35"}]},{"date":"2026-12-05","wd":"Sat","label":"Saturday, December 5","tasks":[{"t":"review","x":"Start cumulative FINAL review: Ch 2-11"}]},{"date":"2026-12-06","wd":"Sun","label":"Sunday, December 6","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-12-07","wd":"Mon","label":"Monday, December 7","tasks":[{"t":"review","x":"Final check: Writing #8 ready + Ch 34-35 quizzes done; review Ch 14-18"}]},{"date":"2026-12-08","wd":"Tue","label":"Tuesday, December 8","tasks":[{"t":"deadline","x":"DUE by 9:00pm MT: Writing #8 (LAST ONE) + Online Quizzes Ch 34-35"}]},{"date":"2026-12-09","wd":"Wed","label":"Wednesday, December 9","tasks":[{"t":"lecture","x":"CLASS \u2013 FINAL EXAM REVIEW (in class) \u2013 attend"},{"t":"review","x":"Cumulative review: Ch 2-11"}]},{"date":"2026-12-10","wd":"Thu","label":"Thursday, December 10","tasks":[{"t":"review","x":"Cumulative review: Ch 14-18, 22"}]},{"date":"2026-12-11","wd":"Fri","label":"Friday, December 11","tasks":[{"t":"review","x":"Cumulative review: Ch 23-26"}]},{"date":"2026-12-12","wd":"Sat","label":"Saturday, December 12","tasks":[{"t":"review","x":"Cumulative review: Ch 29-31, 34-35 (final window opens today)"}]},{"date":"2026-12-13","wd":"Sun","label":"Sunday, December 13","tasks":[{"t":"off","x":"Sunday \u2013 no coursework"}]},{"date":"2026-12-14","wd":"Mon","label":"Monday, December 14","tasks":[{"t":"review","x":"Full practice: previous final exams; drill weak areas"}]},{"date":"2026-12-15","wd":"Tue","label":"Tuesday, December 15","tasks":[{"t":"exam","x":"CUMULATIVE FINAL \u2013 Testing Center (all chapters). Aim to take today/tomorrow. 40% of grade"}]},{"date":"2026-12-16","wd":"Wed","label":"Wednesday, December 16","tasks":[{"t":"exam","x":"Take Final today if not done"}]},{"date":"2026-12-17","wd":"Thu","label":"Thursday, December 17","tasks":[{"t":"exam","x":"FINAL window CLOSES today \u2013 take it now if you haven't. Semester DONE! \ud83c\udf89"}]}]};
+const STORE="econ110plan.v1";
+const TODAY=new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
+const iso=d=>d.toISOString().slice(0,10);
+const TODAY_ISO=iso(TODAY);
+
+let done={};
+try{done=JSON.parse(localStorage.getItem(STORE))||{}}catch(e){done={}}
+function persist(){try{localStorage.setItem(STORE,JSON.stringify(done))}catch(e){}}
+
+const TAGLABEL={read:"Read",quiz:"Quiz",write:"Write",podcast:"Podcast",lecture:"Class",review:"Review",buffer:"Buffer",deadline:"Due",exam:"Exam",off:"Off"};
+const CHECKABLE=t=>t!=="off";
+
+// ---- units ----
+function unitOf(dateStr){
+  if(dateStr<="2026-10-23")return 1;
+  if(dateStr<="2026-11-24")return 2;
+  return 3;
+}
+const UNITS={
+  1:{n:"Unit 1",t:"Foundations & Microeconomics",goal:"→ Exam 1 · Oct 22–23 · Ch 2–11, 14–16"},
+  2:{n:"Unit 2",t:"Market Structures & Macro Basics",goal:"→ Exam 2 · Nov 19–24 · Ch 17–18, 22–25, 29–30"},
+  3:{n:"Unit 3",t:"Macro Policy & Final Review",goal:"→ Cumulative Final · Dec 12–17 · all chapters"}
+};
+
+// week key = Sunday on/before
+function weekKey(dateStr){
+  const d=new Date(dateStr+"T00:00:00");
+  const s=new Date(d);s.setDate(d.getDate()-d.getDay());
+  return iso(s);
+}
+function fmtShort(dateStr){
+  const d=new Date(dateStr+"T00:00:00");
+  return d.toLocaleDateString("en-US",{month:"short",day:"numeric"});
+}
+
+let filter="all";
+
+function taskId(date,i){return date+"#"+i}
+
+function computeProgress(){
+  let tot=0,dn=0;const u={1:[0,0],2:[0,0],3:[0,0]};
+  DATA.days.forEach(day=>{
+    const un=unitOf(day.date);
+    day.tasks.forEach((t,i)=>{
+      if(!CHECKABLE(t.t))return;
+      tot++;u[un][1]++;
+      if(done[taskId(day.date,i)]){dn++;u[un][0]++}
+    });
+  });
+  return{tot,dn,u};
+}
+
+function renderStats(){
+  const{tot,dn,u}=computeProgress();
+  const pct=tot?Math.round(dn/tot*100):0;
+  document.getElementById("pctNum").textContent=pct+"%";
+  document.getElementById("pctSub").textContent=dn+" of "+tot+" tasks done";
+  document.getElementById("barFill").style.width=pct+"%";
+  document.getElementById("miniUnits").innerHTML=[1,2,3].map(k=>
+    `<div><b>${UNITS[k].n}:</b> ${u[k][0]}/${u[k][1]}</div>`).join("");
+}
+
+function renderNextUp(){
+  const el=document.getElementById("nextUp");
+  // days left to Dec 17
+  const end=new Date("2026-12-17T00:00:00");
+  const daysLeft=Math.round((end-TODAY)/864e5);
+  // next deadline or exam >= today
+  let nxt=null;
+  for(const day of DATA.days){
+    if(day.date<TODAY_ISO)continue;
+    const t=day.tasks.find(t=>t.t==="deadline"||t.t==="exam");
+    if(t){nxt={day,t};break}
+  }
+  let html="";
+  if(daysLeft<0){
+    html=`<div class="lab">Status</div><div class="big">Semester complete 🎉</div>`;
+  }else if(nxt){
+    const d=new Date(nxt.day.date+"T00:00:00");
+    const away=Math.round((d-TODAY)/864e5);
+    const awayTxt=away===0?"today":away===1?"tomorrow":"in "+away+" days";
+    let short=nxt.t.x.replace(/DUE by 9:00pm MT: /,"").replace(/ \(submit via Learning Suite\)/,"").split(".")[0];
+    html=`<div class="lab">Next hard deadline</div>`+
+         `<div class="big">${short}</div>`+
+         `<div class="when">${nxt.day.label.replace(/, 2026/,"")} · ${awayTxt}</div>`+
+         `<div class="days-left">${daysLeft} days left in the semester</div>`;
+  }else{
+    html=`<div class="lab">Status</div><div class="big">No deadlines ahead</div><div class="days-left">${daysLeft} days left</div>`;
+  }
+  el.innerHTML=html;
+}
+
+function renderLegend(){
+  const order=["read","quiz","write","podcast","lecture","review","deadline","exam"];
+  document.getElementById("legend").innerHTML=
+    order.map(t=>`<span class="tag ${t}">${TAGLABEL[t]}</span>`).join("");
+}
+
+function passFilter(day,t,idx){
+  if(filter==="all")return true;
+  if(filter==="key")return t.t==="deadline"||t.t==="exam";
+  if(filter==="todo")return CHECKABLE(t.t)&&!done[taskId(day.date,idx)];
+  return true;
+}
+
+function renderContent(){
+  const root=document.getElementById("content");
+  root.innerHTML="";
+  let lastUnit=0,unitEl=null,lastWeek="",weekEl=null,anyShown=false;
+
+  DATA.days.forEach(day=>{
+    const visTasks=day.tasks.map((t,i)=>({t,i})).filter(o=>passFilter(day,o.t,o.i));
+    if(visTasks.length===0)return;
+    anyShown=true;
+    const un=unitOf(day.date);
+    if(un!==lastUnit){
+      lastUnit=un;lastWeek="";
+      unitEl=document.createElement("section");unitEl.className="unit";
+      const U=UNITS[un];
+      unitEl.innerHTML=`<div class="unit-head"><span class="u-n">${U.n}</span><h2>${U.t}</h2><span class="goal">${U.goal}</span></div>`;
+      root.appendChild(unitEl);
+    }
+    const wk=weekKey(day.date);
+    if(wk!==lastWeek){
+      lastWeek=wk;
+      weekEl=document.createElement("div");weekEl.className="week";
+      weekEl.innerHTML=`<div class="week-head"><span class="rng"></span></div>`;
+      weekEl.dataset.wk=wk;weekEl.dataset.first=day.date;
+      unitEl.appendChild(weekEl);
+    }
+    weekEl.dataset.last=day.date;
+    weekEl.appendChild(dayRow(day));
+    // badge for week
+    const badgeSrc=day.tasks.find(t=>t.t==="exam")?"ex":day.tasks.find(t=>t.t==="deadline")?"dl":null;
+    if(badgeSrc&&!weekEl.querySelector(".wbadge")){
+      const b=document.createElement("span");
+      b.className="wbadge "+badgeSrc;
+      b.textContent=badgeSrc==="ex"?"Exam window":"Deadline";
+      weekEl.querySelector(".week-head").appendChild(b);
+    }
+  });
+
+  // fill week ranges
+  root.querySelectorAll(".week").forEach(w=>{
+    w.querySelector(".rng").textContent=fmtShort(w.dataset.first)+" – "+fmtShort(w.dataset.last);
+  });
+
+  if(!anyShown){
+    root.innerHTML=`<div class="empty">Nothing to show for this filter — try “All days”.</div>`;
+  }
+}
+
+function dayRow(day){
+  const el=document.createElement("div");
+  const isToday=day.date===TODAY_ISO;
+  const isOff=day.tasks.every(t=>t.t==="off");
+  const hasExam=day.tasks.some(t=>t.t==="exam");
+  const hasDl=day.tasks.some(t=>t.t==="deadline");
+  el.className="day"+(isToday?" today":"")+(isOff?" d-off":hasExam?" d-exam":hasDl?" d-deadline":"");
+  if(isToday)el.id="today";
+  const d=new Date(day.date+"T00:00:00");
+  const wd=d.toLocaleDateString("en-US",{weekday:"short"});
+  const dn=d.getDate();
+  const mo=d.toLocaleDateString("en-US",{month:"short"});
+  el.innerHTML=
+    `<div class="date"><span class="wd">${wd}</span><span class="dn">${dn}</span><span class="mo">${mo}</span>`+
+    (isToday?`<span class="badge-today">TODAY</span>`:"")+`</div>`+
+    `<div class="tasks"></div>`;
+  const tw=el.querySelector(".tasks");
+  day.tasks.forEach((t,i)=>{
+    if(!passFilter(day,t,i))return;
+    const id=taskId(day.date,i);
+    const checked=!!done[id];
+    const row=document.createElement("div");
+    row.className="task"+(checked?" done":"");
+    if(CHECKABLE(t.t)){
+      row.innerHTML=`<label><input type="checkbox" ${checked?"checked":""} data-id="${id}">`+
+        `<span class="tag ${t.t}">${TAGLABEL[t.t]}</span>`+
+        `<span class="txt">${t.x}</span></label>`;
+    }else{
+      row.innerHTML=`<span class="tag ${t.t}" style="margin-left:26px">${TAGLABEL[t.t]}</span>`+
+        `<span class="txt">${t.x}</span>`;
+    }
+    tw.appendChild(row);
+  });
+  return el;
+}
+
+// events
+document.getElementById("content").addEventListener("change",e=>{
+  if(e.target.matches('input[type=checkbox]')){
+    const id=e.target.dataset.id;
+    if(e.target.checked)done[id]=1;else delete done[id];
+    persist();
+    e.target.closest(".task").classList.toggle("done",e.target.checked);
+    renderStats();renderNextUp();
+    if(filter==="todo")renderContent();
+  }
+});
+document.querySelectorAll(".seg button").forEach(b=>{
+  b.addEventListener("click",()=>{
+    filter=b.dataset.filter;
+    document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    renderContent();
+  });
+});
+document.getElementById("jumpToday").addEventListener("click",()=>{
+  let t=document.getElementById("today");
+  if(!t){ // find first upcoming visible day
+    const weeks=[...document.querySelectorAll(".day")];
+    t=weeks.find(w=>w.querySelector(".date"));
+  }
+  if(t)t.scrollIntoView({behavior:"smooth",block:"center"});
+});
+const resetBtn=document.getElementById("resetBtn");
+resetBtn.addEventListener("click",()=>{
+  if(resetBtn.dataset.armed==="1"){
+    done={};persist();resetBtn.dataset.armed="";resetBtn.textContent="Reset progress";
+    renderStats();renderNextUp();renderContent();
+  }else{
+    resetBtn.dataset.armed="1";resetBtn.textContent="Click again to erase all check-marks";
+    setTimeout(()=>{resetBtn.dataset.armed="";resetBtn.textContent="Reset progress"},4000);
+  }
+});
+
+renderStats();renderNextUp();renderLegend();renderContent();
+// auto-scroll to today on load if within semester
+window.addEventListener("load",()=>{
+  const t=document.getElementById("today");
+  if(t){const y=t.getBoundingClientRect().top+window.scrollY-140;window.scrollTo({top:y,behavior:"smooth"})}
+});
+</script>
+</body>
+</html>
